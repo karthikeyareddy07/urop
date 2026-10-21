@@ -1,0 +1,49 @@
+# Python virtual environments
+.venv/
+tools/.venv/
+venv/
+
+# HuggingFace / model caches
+.hf_cache/
+tools/.hf_cache/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Vendored third-party packages (install via pip instead)
+.pdf_tools/
+
+# Generated model artifacts / embeddings
+*.joblib
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Generated data outputs
+TG-ReDial-Data/out/
+TG-ReDial-Data/out_v2/
+TG-ReDial-Data/out_csv_test/
+TG-ReDial-Data/csv_branch/
+
+# Large serialized data (regenerable)
+*.pkl
+*.npz
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+# Test / cache
+.pytest_cache/
+.coverage
+htmlcov/
+

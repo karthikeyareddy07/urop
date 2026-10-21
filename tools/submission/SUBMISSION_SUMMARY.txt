@@ -1,0 +1,35 @@
+SUBMISSION SUMMARY
+
+Project: TG-ReDial Frozen-ALBERT Linear Probe
+Date: 10/18/2026
+
+## Metrics
+Checkpoint: out_probe/best.pt (965 KB)
+Catalog: 33,834 titles
+Test examples: 2,244
+
+| Metric | Frozen Probe | Random | Relative |
+|--------|-------------|--------|----------|
+| Hit@10 | 29.72% | 1.48% | 20.1x |
+| NDCG@10 | 13.93% | 0.62% | 22.5x |
+| MRR | 12.10% | 0.74% | 16.4x |
+
+## Pipeline
+- Training: python train_frozen_probe.py --epochs 10 --lr 1e-3 --batch 64 --seed 42
+- Evaluation: python evaluate_test_candidate.py (candidate-set, 64 negatives)
+- Serving: python serve_chinese.py --host 0.0.0.0 --port 8000
+- Endpoints: GET /api/health, GET /, POST /api/chat
+
+## Docs
+- paper/paper.tex / paper/paper.md - Full paper (LaTeX)
+- docs/model_card.md - Model card
+- README.md - Documentation
+
+## Notes
+- Unfreeze encoder fine-tuning attempted (CPU memory limit: 627 MB main process)
+- Reproducibility: requirements.lock.txt (84 packages), CI pipeline (ci.yml)
+
+---
+*Generated on 10/18/2026 for paper submission*
+
+﻿

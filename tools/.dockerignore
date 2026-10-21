@@ -1,0 +1,49 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Data files (will be copied separately if needed)
+*.pkl
+*.joblib
+# Allow trained probe checkpoints (out_probe/best.pt) to be copied into the image
+*.pt
+!out_probe/*.pt
+!TG-ReDial-main/out_probe/*.pt
+!TG-ReDial-Data/out/*.pt
+
+# Documentation
+*.md
+docs/
+
+# Test files
+test_*.py
+*_test.py
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+temp/

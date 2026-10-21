@@ -1,0 +1,20 @@
+# Azure Developer CLI configuration for TG-ReDial Chatbot
+name: tg-redial-chatbot
+services:
+  web:
+    project: .
+    language: python
+    host: appservice
+    target: production
+    docker:
+      context: .
+      path: .
+    env:
+      - name: FLASK_ENV
+        value: production
+      - name: FLASK_DEBUG
+        value: "0"
+    hooks:
+      postdeploy:
+        shell: sh
+        run: "echo 'Deployment complete. Chatbot is running.'"

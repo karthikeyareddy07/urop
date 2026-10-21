@@ -1,0 +1,283 @@
+--- PAGE 1 ---
+Batch 2 Research Project Plan | Context-Aware Personalization and Adaptive Preference Elicitation
+ Context-Aware Personalization and Adaptive
+Preference Elicitation in Conversational Recommender
+ Systems
+ B.Tech Batch 2 – Research Project Plan | September–November 2026
+ Department of Computer Science and Engineering
+Project orientation. This is a research-oriented project. The team will use an existing conversational recommendation
+dataset and published implementations, establish a reproducible baseline, introduce a focused personalization and
+preference-elicitation component, and evaluate the effect experimentally. A website, mobile application, chatbot interface,
+or other user-facing product is not required.
+1. Problem Statement
+Conversational Recommender Systems interact with users through multiple turns of conversation and use the information
+provided by the user to recommend suitable items. As a conversation progresses, the user's preferences may become
+clearer, change, or require further questioning.
+The proposed project investigates whether a conversational recommender can maintain a useful representation of the
+user's current preferences, combine it with the user's available historical preferences, and use that information to decide
+whether to ask for more information or proceed with recommendation.
+The primary dataset will be TG-ReDial, which provides multi-turn conversations together with user profiles and historical
+interaction information. ReDial may be used as a secondary validation dataset if time permits. The work will remain an
+offline research experiment rather than a user-facing application.
+2. Recent Papers to be Studied
+Li et al. (2018), “Towards Deep Conversational Recommendations.” Primary source for the ReDial setting and
+conversational recommendation.
+Zhou et al. (2021), “CRSLab: An Open-Source Toolkit for Building Conversational Recommender System.” Useful
+for CRS implementations, datasets, model components, and evaluation.
+Makarova et al. (2024), “Learning a Strategy for Preference Elicitation in Conversational Recommender Systems.”
+Directly relevant to selecting useful questions or attributes for preference elicitation.
+He et al. (2024), “TUT4CRS: Time-aware User-preference Tracking for Conversational Recommendation System.”
+Relevant to tracking changing user preferences across conversation turns.
+Ziegfeld et al. (2025), “The effect of preference elicitation methods on the user experience in conversational
+recommender systems.” Useful for understanding preference elicitation and interaction efficiency.
+Kook et al. (2025), “Empowering Retrieval-based Conversational Recommendation with Contrasting User
+Preferences.” Useful for preference representation and recent implementation practice.
+2025, “Stop Playing the Guessing Game! Evaluating Conversational Recommender Systems via Target-free User
+Simulation.” Relevant to evaluating preference elicitation and conversational recommendation without relying only on a
+known target item.
+These papers form the initial reading set. Students should extend the literature review with relevant 2024–2026 work and
+papers cited by these studies.
+3. Research Gap
+Recent CRS research has studied dynamic preference tracking, preference elicitation, contrasting preferences, and
+strategies for selecting useful questions. Therefore, the project should not claim that these individual problems are
+unexplored.
+
+
+--- PAGE 2 ---
+Batch 2 Research Project Plan | Context-Aware Personalization and Adaptive Preference Elicitation
+The proposed study focuses on the interaction between these components: using the current conversational context and
+the user's available historical preference information to maintain a current preference state, estimate whether the system
+has enough information, and decide whether to elicit another preference or proceed to recommendation.
+Research question: Can a context-aware current preference state, informed by historical user preferences and updated
+through preference elicitation, improve the selection of the next conversational action and recommendation quality?
+The exact research gap and contribution will be finalized after the initial literature review and baseline comparison.
+4. Proposed Methodology
+The project will begin with an existing CRS baseline. The team will study how conversation history, user history, and
+preferences are represented in the selected implementation and then introduce a focused preference-state and
+adaptive-action component.
+4.1 Tentative Architecture
+The architecture is intentionally tentative. The exact representation, preference-elicitation method, action-selection
+strategy, and preference-fusion method will be finalized after the literature review and baseline reproduction.
+ Figure 1. Tentative architecture and student-wise contribution.
+Conversation Input. TG-ReDial multi-turn conversation together with available user profile and historical interaction
+information.
+Current User Preference State. Represent the user's current interests, dislikes, constraints, and uncertainty using the
+conversation and available user history.
+Preference Uncertainty. Estimate whether the current preference state contains enough information for the next action.
+Next-Action Decision. Determine whether the system should request additional preference information or proceed toward
+recommendation.
+Preference Elicitation. Select an informative attribute or question that can reduce uncertainty about the user's
+preferences.
+Updated Preference State. Combine newly obtained information with the existing current and historical preference
+information.
+
+
+--- PAGE 3 ---
+Batch 2 Research Project Plan | Context-Aware Personalization and Adaptive Preference Elicitation
+Personalized CRS Recommendation. The M.Tech student investigates how current, historical, and elicited preferences
+can be combined before passing the resulting representation to an existing CRS recommendation mechanism.
+5. Dataset and Existing Implementations
+Primary dataset – TG-ReDial. TG-ReDial is preferred for Batch 2 because it contains multi-turn conversations together
+with user profiles and historical watching/interactions, making it better aligned with personalized preference research than
+using ReDial alone.
+Secondary dataset – ReDial. ReDial can be used for additional validation if the main pipeline is stable by late October. It
+should not be introduced at the beginning of the project.
+TG-ReDial. Dataset and code repository for the primary experiment.
+https://github.com/RUCAIBox/TG-ReDial
+CRSLab. Primary toolkit for establishing an existing CRS baseline.
+https://github.com/RUCAIBox/CRSLab
+UniCRS. Reference implementation for knowledge-enhanced conversational recommendation.
+https://github.com/RUCAIBox/UniCRS
+UserSimCRS. Optional resource for simulation-based CRS evaluation; not a mandatory dependency.
+https://github.com/iai-group/UserSimCRS
+CORAL. Recent preference-aware implementation useful for preference representation.
+https://github.com/kookeej/CORAL
+The preferred sequence is: reproduce a baseline; understand its data flow and evaluation; implement each research
+component separately; integrate the components; and then conduct controlled comparisons. No new conversational
+dataset should be created within this three-month project.
+6. Division of the Task
+B.Tech Student 1 – Current User Preference State
+Study how the current conversation and available user history can be converted into a useful current preference state.
+Focus on interests, dislikes, constraints, and changes in preference. Establish the baseline data flow and prepare the
+preference-state representation.
+B.Tech Student 2 – Preference Elicitation
+Study what additional information should be requested when the current preference state is incomplete. Start with a simple
+information-gain, uncertainty-reduction, or candidate-space-reduction strategy before considering advanced approaches.
+B.Tech Student 3 – Next-Action Decision
+Study when the system should ask another question and when it should proceed toward recommendation. Start with a
+simple rule or threshold-based decision and evaluate its effect before attempting a learned policy.
+M.Tech Student – Personalized Preference Fusion and CRS Integration
+Own the central research methodology that connects the three B.Tech contributions. Investigate how historical user
+preferences, current conversational preferences, and newly elicited preferences can be combined into a personalized
+preference representation and used by the existing CRS recommendation mechanism. The M.Tech student will also lead
+the baseline/proposed comparison, ablation studies, experimental protocol, result analysis, and integration required for the
+journal paper.
+7. Work Integration
+The three B.Tech students work in parallel but contribute to one common pipeline. Student 1 prepares the current
+preference state, Student 2 studies how additional preference information can be elicited, and Student 3 studies the
+next-action decision. The M.Tech student connects these components through the personalized preference-fusion
+methodology and the existing CRS recommendation pipeline.
+The M.Tech student's role is not limited to software integration. The M.Tech work constitutes the central methodological
+contribution of the journal paper: comparing current-only, historical-only, current-plus-historical, and full
+
+
+--- PAGE 4 ---
+Batch 2 Research Project Plan | Context-Aware Personalization and Adaptive Preference Elicitation
+current-plus-historical-plus-elicited preference representations.
+Difficult examples and failure cases should be maintained in a shared experiment log so that the three B.Tech components
+remain consistent.
+8. Experimental Design and Evaluation
+The baseline will first be reproduced on TG-ReDial. The proposed approach will then introduce preference-state modeling,
+adaptive elicitation, and personalized preference fusion while keeping the remaining experimental setting as consistent as
+possible.
+Baseline: Conversation + available user history → Existing CRS → Recommendation
+Proposed: Conversation + user history → Current Preference State → Preference Uncertainty → Ask / Recommend →
+Updated Preference State → Personalized Preference Fusion → Existing CRS → Recommendation
+Ablation studies should include, where feasible: current conversation only; historical preference only; current + historical
+preference fusion; and the full approach with elicited preference information. This provides a direct test of the M.Tech
+student's central contribution.
+Evaluation Component
+Metrics / Analysis
+Recommendation quality
+Recall@10, Recall@20, MRR, NDCG, or metrics supported by the selected baseline.
+Preference elicitation
+Information gain, uncertainty reduction, candidate-space reduction, or a suitable selection
+metric.
+Interaction efficiency
+Number of questions/turns required to reach a recommendation of a given quality.
+Preference-state quality
+Accuracy/F1 where reliable reference labels are available; otherwise downstream
+recommendation improvement and error analysis.
+Error analysis
+Unnecessary questions, missed preference changes, incorrect preference updates, and
+recommendation errors.
+9. Tentative Timeline
+ Period
+B.Tech 1
+B.Tech 2
+B.Tech 3
+M.Tech
+Week 1–2
+Study TG-ReDial, CRS
+basics, user history and
+preference representation.
+Study preference elicitation
+and identify candidate
+attributes/questions.
+Study CRS
+recommendation and
+next-action decisions.
+Study TG-ReDial, baseline
+CRS, personalization
+literature and define the
+central experimental
+framework.
+Week 3–4
+Run baseline and prepare
+preference-state data flow.
+Prepare elicitation
+examples and a simple
+selection baseline.
+Run recommendation
+baseline and define
+action-decision evaluation.
+Reproduce baseline,
+establish evaluation pipeline,
+and define preference-fusion
+experiments.
+Week 5–6
+Develop current
+preference-state
+component.
+Develop information-gain/u
+ncertainty-reduction
+elicitation component.
+Develop simple next-action
+decision component.
+Develop initial current +
+historical preference-fusion
+method and integration plan.
+Week 7–8
+Refine preference state
+and analyze errors.
+Evaluate elicitation quality
+and interaction efficiency.
+Evaluate action decision
+and recommendation
+impact.
+Run fusion experiments and
+compare current-only vs
+historical-aware
+representations.
+Week
+9–10
+Support common pipeline
+integration.
+Integrate elicitation.
+Integrate next-action
+decision.
+Complete personalized
+fusion, integration, ablations,
+and main experiments.
+Week 11
+Prepare preference-state
+analysis.
+Prepare elicitation and
+interaction results.
+Prepare
+action/recommendation
+analysis.
+Lead final experiments, error
+analysis, tables, figures, and
+statistical comparisons.
+
+
+--- PAGE 5 ---
+Batch 2 Research Project Plan | Context-Aware Personalization and Adaptive Preference Elicitation
+Period
+B.Tech 1
+B.Tech 2
+B.Tech 3
+M.Tech
+Week 12
+Manuscript support and
+final checks.
+Manuscript support and
+final checks.
+Manuscript support and
+final checks.
+Lead manuscript preparation
+and final submission
+package.
+Milestones. A working TG-ReDial baseline by the end of September; individual components working by mid-October;
+preliminary integration and preference-fusion comparison by the end of October; final experiments, ablation studies, error
+analysis, and manuscript preparation during November.
+10. Expected Outcome
+The team is expected to develop and experimentally evaluate a personalized conversational recommendation approach
+that combines historical user preferences, current conversational preferences, and newly elicited preferences. The study
+should determine whether this personalized preference fusion improves recommendation quality and/or reduces the
+amount of interaction needed to reach a suitable recommendation.
+The primary output is a research manuscript supported by reproducible experiments. A web application or user-facing
+software product is not part of the project requirement.
+11. References and Initial Resources
+Li, R., et al. (2018). Towards Deep Conversational Recommendations. NeurIPS.
+https://papers.neurips.cc/paper/8180-towards-deep-conversational-recommendations
+Zhou, K., et al. (2021). CRSLab: An Open-Source Toolkit for Building Conversational Recommender System. ACL-IJCNLP.
+https://aclanthology.org/2021.acl-demo.22/
+Makarova, A., et al. (2024). Learning a Strategy for Preference Elicitation in Conversational Recommender Systems.
+https://centaur.reading.ac.uk/116044/
+He, D., et al. (2024). TUT4CRS: Time-aware User-preference Tracking for Conversational Recommendation System.
+https://openreview.net/forum?id=M4XBOWqXnP
+Ziegfeld, L., Di Scala, D., & Cremers, A. H. M. (2025). The effect of preference elicitation methods on the user experience in conversational
+recommender systems.
+https://doi.org/10.1016/j.csl.2024.101696
+Kook, H., Kim, J., Park, S., & Lee, J. (2025). Empowering Retrieval-based Conversational Recommendation with Contrasting User
+Preferences. NAACL-HLT 2025.
+https://aclanthology.org/2025.naacl-long.392/
+2025. Stop Playing the Guessing Game! Evaluating Conversational Recommender Systems via Target-free User Simulation.
+https://aclanthology.org/2025.findings-emnlp.1067/
+TG-ReDial project repository and resources.
+https://github.com/RUCAIBox/TG-ReDial
+Research-team note. The architecture and individual methods are intentionally tentative. Students should not assume that
+a particular neural model, reinforcement-learning method, language model, or preference-fusion formula is mandatory. The
+final choices should be justified from the literature and finalized after the baseline is reproduced.

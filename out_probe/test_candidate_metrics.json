@@ -1,0 +1,11 @@
+{
+  "checkpoint": "d:\\TG-ReDial-main\\tools\\out_probe\\best.pt",
+  "n_test_examples": 2244,
+  "catalog_size": 33834,
+  "max_neg": 64,
+  "hit10": 0.29723707664884136,
+  "ndcg10": 0.139299013675031,
+  "mrr": 0.12095076545397765,
+  "targets_missing": 0,
+  "elapsed_sec": 39.71
+}
