@@ -37,7 +37,9 @@ TG-ReDial-Data/csv_branch/
 # OS / editor
 .DS_Store
 Thumbs.db
-.vscode/
+.vscode/*
+!.vscode/settings.example.json
+!.vscode/extensions.json
 .idea/
 
 # Logs
