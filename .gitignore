@@ -44,6 +44,10 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Local auto-push watcher (machine-specific)
+auto_push.py
+auto_push.log
 # Test / cache
 .pytest_cache/
 .coverage
