@@ -136,6 +136,7 @@ class ChineseRecommender(nn.Module):
             nn.LayerNorm(proj_dim),
             nn.Linear(proj_dim, proj_dim),
             nn.GELU(),
+            nn.Dropout(0.1),
             nn.Linear(proj_dim, proj_dim),
         )
         self.temperature = nn.Parameter(torch.tensor(float(temperature)))
