@@ -97,6 +97,10 @@ def topk_score_entropy(scores, k: int = 20) -> float:
     """Entropy (nats) of a softmax over the top-k scores, z-scored WITHIN top-k."""
     s = np.asarray(scores, dtype=np.float64)
     t = s[np.argsort(-s)[:k]]
+    if t.size == 0:
+        return 0.0
+    if t.std() < 1e-12:
+        return 0.0
     z = (t - t.mean()) / (t.std() + 1e-9)
     ex = np.exp(z - z.max())
     p = ex / ex.sum().clip(min=1e-12)
@@ -280,9 +284,15 @@ class ChineseRanker:
         out = []
         for i in idx:
             mid = self.order[int(i)]
+            movie = self.movies.get(str(mid), {}) if isinstance(self.movies, dict) else {}
+            title = movie.get("title") if isinstance(movie, dict) else None
+            try:
+                mid_out = int(mid)
+            except (TypeError, ValueError):
+                mid_out = mid
             out.append({
-                "movie_id": int(mid),
-                "title": self.movies[str(mid)].get("title", ""),
+                "movie_id": mid_out,
+                "title": title if title is not None else str(mid),
                 "similarity": float(scores[int(i)]),
             })
         return out

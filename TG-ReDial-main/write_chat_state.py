@@ -136,5 +136,4 @@ if __name__ == "__main__":
 with open('d:/TG-ReDial-main/TG-ReDial-main/chat_state.py', 'w', encoding='utf-8') as f:
     f.write(CONTENT)
 print("chat_state.py written successfully")
-'''
 
